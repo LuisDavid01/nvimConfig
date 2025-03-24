@@ -12,10 +12,10 @@ return require('packer').startup(function(use)
   }
 
   use({
-	  'rebelot/kanagawa.nvim',
-	  as = 'kanagawa',
+	  'EdenEast/nightfox.nvim',
+	  as = 'nightfox',
 	  config = function()
-		  vim.cmd('colorscheme kanagawa')
+		  vim.cmd('colorscheme nightfox')
 
 	  end
   })
