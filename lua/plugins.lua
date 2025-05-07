@@ -79,11 +79,24 @@ return {
     {
         "tpope/vim-fugitive",
     },
+	--lsp
 	{
-		"neovim/nvim-lspconfig"
-	},
-	{
-    "williamboman/mason.nvim"
-	},
-
+    "mason-org/mason.nvim",
+    config = function()
+        require("mason").setup()
+    end,
+},
+{
+    "mason-org/mason-lspconfig.nvim",
+    dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
+    config = function()
+        require("mason-lspconfig").setup {
+            ensure_installed = {  "ts_ls", "gopls", "omnisharp", "pyright", "clangd" },
+            automatic_installation = true,
+        }
+    end,
+},
+{
+    "neovim/nvim-lspconfig",
+},
 }
