@@ -14,7 +14,7 @@ return {
     -- Treesitter para resaltado de sintaxis
     {
         "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate",
+        build = ":TSInstall",
         config = function()
             require("nvim-treesitter.configs").setup({
                 ensure_installed = { "lua", "javascript", "typescript", "python" },
@@ -80,23 +80,30 @@ return {
         "tpope/vim-fugitive",
     },
 	--lsp
-	{
+{
     "mason-org/mason.nvim",
     config = function()
-        require("mason").setup()
+        require("mason").setup({
+        })
     end,
 },
 {
     "mason-org/mason-lspconfig.nvim",
+    branch = "main",
     dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
     config = function()
         require("mason-lspconfig").setup {
-            ensure_installed = {  "ts_ls", "gopls", "omnisharp", "pyright", "clangd" },
+            ensure_installed = { "lua_ls","ts_ls", "gopls", "pyright", "clangd", "csharp_ls", "emmet_ls" },
+			automatic_enable = false,
             automatic_installation = true,
         }
     end,
 },
 {
     "neovim/nvim-lspconfig",
+},
+{
+    "Hoffs/omnisharp-extended-lsp.nvim",
+    dependencies = { "neovim/nvim-lspconfig" },
 },
 }

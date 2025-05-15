@@ -1,5 +1,7 @@
+
 local lspconfig = require("lspconfig")
-local servers = { "rust_analyzer", "ts_ls", "gopls", "omnisharp", "pyright", "clangd" }
+local servers = { "ts_ls", "gopls", "pyright", "clangd", "csharp_ls", "lua_ls", "emmet_ls", "phpactor" }
+
 for _, server in ipairs(servers) do
     local config = {
         on_attach = function(client, bufnr)
@@ -11,20 +13,7 @@ for _, server in ipairs(servers) do
         end,
         capabilities = require("cmp_nvim_lsp").default_capabilities(),
     }
-
-    if server == "omnisharp" then
-        config.cmd = {
-            "C:/Users/luisd/AppData/Local/nvim-data/mason/packages/omnisharp/OmniSharp.cmd",
-            "--languageserver",
-            "--hostPID",
-            tostring(vim.fn.getpid()),
-            "DotNet:enablePackageRestore=false",
-            "--encoding",
-            "utf-8",
-            "Sdk:IncludePrereleases=true",
-            "FormattingOptions:EnableEditorConfigSupport=true",
-        }
-        config.root_dir = require("lspconfig.util").root_pattern("*.sln", "*.csproj", ".git")
-	end
     lspconfig[server].setup(config)
+
 end
+
