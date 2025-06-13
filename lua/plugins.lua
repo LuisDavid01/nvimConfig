@@ -93,7 +93,7 @@ return {
     dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
     config = function()
         require("mason-lspconfig").setup {
-            ensure_installed = { "lua_ls","ts_ls", "gopls", "pyright", "clangd", "csharp_ls", "emmet_ls" },
+            ensure_installed = { "lua_ls","ts_ls", "gopls", "pyright", "clangd", "csharp_ls", "emmet_ls", "htmx" },
 			automatic_enable = false,
             automatic_installation = true,
         }
@@ -106,4 +106,8 @@ return {
     "Hoffs/omnisharp-extended-lsp.nvim",
     dependencies = { "neovim/nvim-lspconfig" },
 },
+	-- copilot
+	{
+		"github/copilot.vim"
+	},
 }
