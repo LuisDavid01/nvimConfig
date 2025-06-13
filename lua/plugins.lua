@@ -13,17 +13,20 @@ return {
     },
     -- Treesitter para resaltado de sintaxis
     {
-        "nvim-treesitter/nvim-treesitter",
-        build = ":TSInstall",
-        config = function()
-            require("nvim-treesitter.configs").setup({
-                ensure_installed = { "lua", "javascript", "typescript", "python" },
-                highlight = { enable = true },
-                indent = { enable = true },
-            })
-        end,
-    },
-    {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate", -- mejor que TSInstall
+    config = function()
+        require("nvim-treesitter.configs").setup({
+            ensure_installed = {
+                "lua", "javascript", "typescript", "python", "go", "html", "css",
+                "json", "c", "cpp", "bash", "markdown", "markdown_inline",
+                "vim", "yaml", "rust", "php"
+            },
+            highlight = { enable = true },
+            indent = { enable = true },
+        })
+    end,
+},	{
         "nvim-treesitter/playground",
     },
 
@@ -39,6 +42,8 @@ return {
         cmp.setup({
             sources = {
                 { name = "nvim_lsp" },
+				{ name = "nvim_lua" },
+				{ name = "luasnip" },
                 { name = "buffer" },
                 { name = "path" },
             },
@@ -47,6 +52,22 @@ return {
                 ["<C-Space>"] = cmp.mapping.complete(),
                 ["<C-n>"] = cmp.mapping.select_next_item(),
                 ["<C-p>"] = cmp.mapping.select_prev_item(),
+				["<Tab>"] = function(fallback)
+    local luasnip = require("luasnip")
+    if luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+    else
+        fallback()
+    end
+end,
+["<S-Tab>"] = function(fallback)
+    local luasnip = require("luasnip")
+    if luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+    else
+        fallback()
+    end
+end,
             },
         })
     end,
@@ -57,14 +78,7 @@ return {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
         dependencies = { "nvim-lua/plenary.nvim" },
-        config = function()
-            local harpoon = require("harpoon")
-            harpoon:setup()
-            vim.keymap.set("n", "<leader>a", function() harpoon:list():append() end, { desc = "Harpoon: Add file" })
-            vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon: Toggle menu" })
-            vim.keymap.set("n", "<C-h>", function() harpoon:list():select(1) end, { desc = "Harpoon: Go to file 1" })
-            vim.keymap.set("n", "<C-t>", function() harpoon:list():select(2) end, { desc = "Harpoon: Go to file 2" })
-        end,
+
     },
 
     -- Undotree
@@ -110,4 +124,16 @@ return {
 	{
 		"github/copilot.vim"
 	},
+	{
+    "L3MON4D3/LuaSnip",
+    version = "v2.*",  -- opcional: puedes especificar versión
+    dependencies = { "rafamadriz/friendly-snippets" }, -- Snippets listos
+    config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+    end,
+	},
+	{
+    "saadparwaiz1/cmp_luasnip",
+	},
 }
+
