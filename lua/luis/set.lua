@@ -25,4 +25,13 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime= 50
 vim.opt.colorcolumn = "80"
 
-vim.g.mapleader = " " 
+vim.g.mapleader = " "
+vim.diagnostic.config({
+  virtual_text = true, -- Mostrar diagnósticos como texto virtual en la línea
+  signs = true, -- Mostrar íconos en la columna de signos
+  float = {
+	source = "always", border = "single", 
+  },
+})
+
+
