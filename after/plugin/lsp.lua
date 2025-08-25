@@ -1,27 +1,25 @@
-
 local lspconfig = require("lspconfig")
-local servers = { "ts_ls", "gopls", "pyright", "clangd", "csharp_ls", "lua_ls", "emmet_ls", "phpactor", "htmx", "dockerls" }
+local servers = { "ts_ls", "gopls", "pyright", "clangd", "rust_analyzer", "lua_ls", "emmet_ls", "bashls", "html",
+	"dockerls", "marksman", "yamlls" }
 
 for _, server in ipairs(servers) do
-    local config = {
-        on_attach = function(client, bufnr)
-            vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-            local opts = { buffer = bufnr, noremap = true, silent = true }
-            vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-            vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-        end,
-        capabilities = require("cmp_nvim_lsp").default_capabilities(),
-    }
-    lspconfig[server].setup(config)
-
+	local config = {
+		on_attach = function(client, bufnr)
+			vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+			local opts = { buffer = bufnr, noremap = true, silent = true }
+			vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+			vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+		end,
+		capabilities = require("cmp_nvim_lsp").default_capabilities(),
+	}
+	lspconfig[server].setup(config)
 end
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-  group = vim.api.nvim_create_augroup("LspFormatOnSave", { clear = true }),
-  callback = function()
-    vim.lsp.buf.format({ async = false })
-  end,
-  desc = "Formatear archivo con LSP al guardar",
+	group = vim.api.nvim_create_augroup("LspFormatOnSave", { clear = true }),
+	callback = function()
+		vim.lsp.buf.format({ async = false })
+	end,
+	desc = "Formatear archivo con LSP al guardar",
 })
-
