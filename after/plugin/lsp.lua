@@ -1,6 +1,6 @@
 local lspconfig = require("lspconfig")
 local servers = { "ts_ls", "gopls", "pyright", "clangd", "rust_analyzer", "lua_ls", "emmet_ls", "bashls", "html",
-	"dockerls", "marksman", "yamlls" }
+	"dockerls", "marksman", "yamlls", "astro" }
 
 for _, server in ipairs(servers) do
 	local config = {

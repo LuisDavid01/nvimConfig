@@ -20,7 +20,7 @@ return {
 				ensure_installed = {
 					"lua", "javascript", "typescript", "python", "go", "html", "css",
 					"json", "c", "cpp", "bash", "markdown", "markdown_inline",
-					"vim", "yaml", "rust", "php"
+					"vim", "yaml", "rust", "astro"
 				},
 				highlight = { enable = true },
 				indent = { enable = true },
@@ -122,7 +122,8 @@ return {
 					"cssls",
 					"tailwindcss",
 					"dockerls",
-					"marksman"
+					"marksman",
+					"astro"
 				},
 				automatic_enable = false,
 				automatic_installation = true,
