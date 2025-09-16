@@ -20,7 +20,7 @@ return {
 				ensure_installed = {
 					"lua", "javascript", "typescript", "python", "go", "html", "css",
 					"json", "c", "cpp", "bash", "markdown", "markdown_inline",
-					"vim", "yaml", "rust", "astro"
+					"vim", "yaml", "rust"
 				},
 				highlight = { enable = true },
 				indent = { enable = true },
@@ -112,7 +112,6 @@ return {
 					"ts_ls",
 					"gopls",
 					"pyright",
-					"clangd",
 					"emmet_ls",
 					"rust_analyzer",
 					"bashls",
@@ -125,8 +124,8 @@ return {
 					"marksman",
 					"astro"
 				},
-				automatic_enable = false,
-				automatic_installation = true,
+				automatic_enable = false
+
 			}
 		end,
 	},
@@ -185,4 +184,9 @@ return {
 			},
 		},
 	},
+
+	{
+		"ThePrimeagen/vim-be-good",
+	},
+
 }
