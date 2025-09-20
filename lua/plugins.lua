@@ -12,23 +12,8 @@ return {
 		end,
 	},
 	-- Treesitter para resaltado de sintaxis
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate", -- mejor que TSInstall
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				ensure_installed = {
-					"lua", "javascript", "typescript", "python", "go", "html", "css",
-					"json", "c", "cpp", "bash", "markdown", "markdown_inline",
-					"vim", "yaml", "rust"
-				},
-				highlight = { enable = true },
-				indent = { enable = true },
-			})
-		end,
-	}, {
-	"nvim-treesitter/playground",
-},
+	{ "nvim-treesitter/nvim-treesitter", branch = 'main', lazy = false, build = ":TSUpdate" },
+
 
 	{
 		"hrsh7th/nvim-cmp",
@@ -122,9 +107,11 @@ return {
 					"tailwindcss",
 					"dockerls",
 					"marksman",
-					"astro"
+					"astro",
+					"elixirls",
+
 				},
-				automatic_enable = false
+				automatic_enable = true,
 
 			}
 		end,
