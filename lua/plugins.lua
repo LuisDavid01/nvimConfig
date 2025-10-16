@@ -109,6 +109,7 @@ return {
 					"marksman",
 					"astro",
 					"elixirls",
+					"clangd",
 
 				},
 				automatic_enable = true,

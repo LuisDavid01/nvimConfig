@@ -1,9 +1,9 @@
 require 'nvim-treesitter'.install { 'rust', 'javascript', 'zig', 'lua', 'elixir', 'markdown', 'docker', 'makefile', 'vim',
-	'typescript', 'json', 'yaml', 'html', 'css', 'tsx' }
+	'typescript', 'json', 'yaml', 'html', 'css', 'tsx', 'go', 'heex', 'eex', 'c' }
 
 vim.api.nvim_create_autocmd('FileType', {
 	pattern = { 'rust', 'javascript', 'zig', 'lua', 'elixir', 'markdown', 'docker', 'makefile', 'vim',
-		'typescript', 'json', 'yaml', 'html', 'css', 'tsx' },
+		'typescript', 'json', 'yaml', 'html', 'css', 'tsx', 'go', 'heex', 'eex', 'c' },
 	callback = function()
 		vim.treesitter.start()
 	end,
