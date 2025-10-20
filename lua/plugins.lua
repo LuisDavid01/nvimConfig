@@ -13,8 +13,12 @@ return {
 	},
 	-- Treesitter para resaltado de sintaxis
 	{ "nvim-treesitter/nvim-treesitter", branch = 'main', lazy = false, build = ":TSUpdate" },
-
-
+	{
+		"supermaven-inc/supermaven-nvim",
+		config = function()
+			require("supermaven-nvim").setup({})
+		end,
+	},
 	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
@@ -110,6 +114,7 @@ return {
 					"astro",
 					"elixirls",
 					"clangd",
+					"r_language_server",
 
 				},
 				automatic_enable = true,
@@ -121,9 +126,11 @@ return {
 		"neovim/nvim-lspconfig",
 	},
 	-- copilot
+	--[[
 	{
 		"github/copilot.vim"
 	},
+	]] --
 	{
 		"L3MON4D3/LuaSnip",
 		version = "v2.*",                            -- opcional: puedes especificar versión

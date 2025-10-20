@@ -1,10 +1,3 @@
---[[
-
-local servers = { "ts_ls", "gopls", "pyright", "cssls", "rust_analyzer", "lua_ls", "bashls", "html",
-	"dockerls", "marksman", "yamlls", "astro", "tailwindcss", "emmet_ls" }
-
-]] --
-
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local bufnr = args.buf
